@@ -7,7 +7,6 @@ to streaming responses for compatibility with Vercel AI SDK.
 
 from fastapi.responses import StreamingResponse
 
-
 def patch_vercel_headers(response: StreamingResponse) -> StreamingResponse:
     """
     Add required headers for Vercel AI SDK compatibility.
