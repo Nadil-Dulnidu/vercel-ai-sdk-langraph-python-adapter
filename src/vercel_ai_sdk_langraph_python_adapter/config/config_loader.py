@@ -4,9 +4,8 @@ Configuration loader module to load settings from config.json file.
 
 import json
 import os
-from typing import Any, Optional, Dict
+from typing import Any
 from contextlib import contextmanager
-from copy import deepcopy
 
 
 class ConfigLoader:
@@ -24,15 +23,23 @@ class ConfigLoader:
 
     def _load_config(self) -> None:
         """Load configuration from config.json file"""
-        config_path = os.path.join(
-            os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "config.json"
-        )
+        package_root = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
+        repo_root = os.path.dirname(package_root)
 
-        if not os.path.exists(config_path):
-            raise FileNotFoundError(f"Configuration file not found: {config_path}")
+        candidate_paths = [
+            os.path.join(os.getcwd(), "config.json"),
+            os.path.join(repo_root, "config.json"),
+            os.path.join(package_root, "config.json"),
+        ]
 
-        with open(config_path, "r") as f:
-            self._config = json.load(f)
+        for config_path in candidate_paths:
+            if os.path.exists(config_path):
+                with open(config_path, "r") as f:
+                    self._config = json.load(f)
+                return
+
+        # Use empty config when running as an installed package without config.json
+        self._config = {}
 
     def get(self, *keys: str, default: Any = None) -> Any:
         """

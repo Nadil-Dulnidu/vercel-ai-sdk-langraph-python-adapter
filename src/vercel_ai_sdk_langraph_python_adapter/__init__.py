@@ -6,6 +6,6 @@ from .message_transformer import extract_file_from_messages, extract_user_messag
 __all__ = [
     "stream_langgraph_to_vercel",
     "extract_file_from_messages",
-    "extract_user_message", 
-]
+    "extract_user_message",\n]
+
 
