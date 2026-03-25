@@ -12,7 +12,7 @@ and `useAssistant`) consume a LangGraph graph without changes to your agent logi
 
 ## Requirements
 - Python 3.11+
-- `langgraph`, `langchain`, `fastapi`, `httpx`
+- `langgraph`, `langchain`, `fastapi`
 
 ## Installation
 

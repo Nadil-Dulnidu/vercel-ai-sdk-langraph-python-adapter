@@ -726,10 +726,9 @@ wheels = [
 [[package]]
 name = "vercel-ai-sdk-langraph-python-adapter"
 version = "0.1.0"
-source = { virtual = "." }
+source = { editable = "." }
 dependencies = [
     { name = "fastapi" },
-    { name = "httpx" },
     { name = "langchain" },
     { name = "langgraph" },
 ]
@@ -737,7 +736,6 @@ dependencies = [
 [package.metadata]
 requires-dist = [
     { name = "fastapi", specifier = ">=0.135.2" },
-    { name = "httpx", specifier = ">=0.28.1" },
     { name = "langchain", specifier = ">=1.2.13" },
     { name = "langgraph", specifier = ">=1.1.3" },
 ]
